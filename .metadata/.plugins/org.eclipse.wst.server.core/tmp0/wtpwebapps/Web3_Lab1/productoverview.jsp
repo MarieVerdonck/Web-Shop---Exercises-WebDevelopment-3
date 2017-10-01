@@ -25,7 +25,7 @@
 						<td>${product.name}</td>
 						<td>${product.description}</td>
 						<td>${product.price}</td>
-						<td><a id="delete${product.productId}" href="Controller?action=deleteProduct&id=${product.productId}">Delete</a></td>
+						<td><a id="delete${product.productId}" href="Controller?action=deleteProductPage&id=${product.productId}">Delete</a></td>
 						<td><a id="update${product.productId}" href="Controller?action=updateProductPage&id=${product.productId}">Update</a></td>
 					</tr>
 				</c:forEach>

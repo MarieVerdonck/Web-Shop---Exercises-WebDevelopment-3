@@ -11,14 +11,12 @@
 		<jsp:include page="header.jsp">
 			<jsp:param name="title" value="Add Product"/>
 		</jsp:include>
-	<main>
 	
 	<jsp:include page="addProductForm.jsp">
 		<jsp:param name="action" value="addProductToDB"/>
 		<jsp:param name="submit" value="Add Product"/>
 	</jsp:include>
-
-	</main>
+	
 	<footer>
 	&copy; Webontwikkeling 3, UC Leuven-Limburg
 	</footer>

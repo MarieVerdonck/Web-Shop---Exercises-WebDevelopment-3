@@ -10,7 +10,7 @@
 	<div id="container">
 		<jsp:include page="header.jsp">
 			<jsp:param name="title" value="Update Product"/>
-	<main>
+		</jsp:include>
 	
 	<jsp:include page="addProductForm.jsp">
 		<jsp:param name="action" value="updateProduct"/>

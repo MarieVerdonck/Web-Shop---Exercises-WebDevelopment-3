@@ -71,6 +71,12 @@ public class Controller extends HttpServlet {
 				case "updateProduct" :
 					destination = updateProduct(request, response);
 					break;
+				case "deleteProductPage" :
+					destination = goToDeleteProductPage(request, response);
+					break;
+				case "deleteProduct" :
+					destination = deleteProduct(request, response);
+					break;
 				case "signUp":
 					destination = showSignUpPage(request, response);
 					break;
@@ -143,6 +149,17 @@ public class Controller extends HttpServlet {
 		}
 				
 		return destination;
+	}
+	
+	private String goToDeleteProductPage(HttpServletRequest request, HttpServletResponse response) {
+		Product product = service.getProduct(request.getParameter("id"));
+		request.setAttribute("product", product);
+		return "deleteProduct.jsp";
+	}
+
+	private String deleteProduct(HttpServletRequest request, HttpServletResponse response) {
+		service.deleteProduct(request.getParameter("id"));
+		return showProducts(request, response);
 	}
 
 	private String showSignUpPage(HttpServletRequest request, HttpServletResponse response) {

@@ -1,4 +1,5 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	<main>
 		<c:if test="${errors.size() > 0}">
 			<div class="alert-danger">
 				<ul>
@@ -27,3 +28,4 @@
 	        <p><input type="submit" id="addProduct" value="${param.submit}"></p>
 	        
 	    </form>
+	</main>
