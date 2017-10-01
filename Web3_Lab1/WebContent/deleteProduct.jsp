@@ -18,7 +18,8 @@
 		<p>Price: ${product.price}</p>
 		
 		<form method="POST" action="Controller?action=deleteProduct&id=${product.productId}">
-			<input type="submit" id="delete" value="Delete" />
+			<input type="submit" id="delete" name="submit" value="Delete" />
+			<input type="submit" id="cancel" name="submit" value="Cancel" />
 		</form>
 		
 	</main>

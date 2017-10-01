@@ -69,6 +69,13 @@ public class AddProductTest {
 		}
 		assertEquals(true, found);
 		
+		ArrayList<WebElement> deleteLinks=(ArrayList<WebElement>) driver.findElements(By.xpath("//*[contains(@id, 'delete')]"));
+		String lastDeleteLink = deleteLinks.get(deleteLinks.size()-1).getAttribute("href");
+		driver.get(lastDeleteLink);
+		
+		WebElement deletebutton=driver.findElement(By.id("delete"));
+		deletebutton.click();	
+		
 	}
 	
 	@Test
@@ -121,7 +128,8 @@ public class AddProductTest {
 		assertEquals("Add Product",title);
 		
 		WebElement errorMsg = driver.findElement(By.cssSelector("div.alert-danger ul li"));
-		assertEquals("Price is not a valid number.", errorMsg.getText());
+		String msg = errorMsg.getText();
+		assertEquals("Give a valid price", errorMsg.getText());
 
 		WebElement fieldProductName=driver.findElement(By.id("name"));
 		assertEquals("Test",fieldProductName.getAttribute("value"));

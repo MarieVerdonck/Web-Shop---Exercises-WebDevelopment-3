@@ -70,7 +70,7 @@ public class DeleteProductTest {
 		ArrayList<WebElement> listItems=(ArrayList<WebElement>) driver.findElements(By.cssSelector("table tr"));
 		boolean found=false;
 		for (WebElement listItem:listItems) {
-				if (listItem.getText().contains("ChangeNameTest")) {
+				if (listItem.getText().contains(randomName)) {
 				found=true;
 			}
 		}

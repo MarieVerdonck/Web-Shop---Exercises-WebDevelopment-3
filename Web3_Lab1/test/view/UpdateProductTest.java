@@ -76,5 +76,12 @@ public class UpdateProductTest {
 			}
 		}
 		assertEquals(true, found);
+		
+		ArrayList<WebElement> deleteLinks=(ArrayList<WebElement>) driver.findElements(By.xpath("//*[contains(@id, 'delete')]"));
+		String lastDeleteLink = deleteLinks.get(deleteLinks.size()-1).getAttribute("href");
+		driver.get(lastDeleteLink);
+		
+		WebElement deletebutton=driver.findElement(By.id("delete"));
+		deletebutton.click();	
 	}
 }

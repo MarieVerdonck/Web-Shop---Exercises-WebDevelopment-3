@@ -158,7 +158,9 @@ public class Controller extends HttpServlet {
 	}
 
 	private String deleteProduct(HttpServletRequest request, HttpServletResponse response) {
-		service.deleteProduct(request.getParameter("id"));
+		if (request.getParameter("submit").equals("Delete")) {
+			service.deleteProduct(request.getParameter("id"));
+		}
 		return showProducts(request, response);
 	}
 
