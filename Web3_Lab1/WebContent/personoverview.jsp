@@ -23,6 +23,7 @@
 						<td>${person.email}</td>
 						<td>${person.firstName}</td>
 						<td>${person.lastName}</td>
+						<td><a id="delete${person.userid}" href="Controller?action=deletePersonPage&id=${person.userid}">Delete</a></td>
 					</tr>
 				</c:forEach>
 				<caption>Users Overview</caption>

@@ -77,6 +77,12 @@ public class Controller extends HttpServlet {
 				case "deleteProduct" :
 					destination = deleteProduct(request, response);
 					break;
+				case "deletePersonPage" :
+					destination = goToDeletePersonPage(request, response);
+					break;
+				case "deletePerson" :
+					destination = deletePerson(request, response);
+					break;
 				case "signUp":
 					destination = showSignUpPage(request, response);
 					break;
@@ -149,6 +155,19 @@ public class Controller extends HttpServlet {
 		}
 				
 		return destination;
+	}
+	
+	private String goToDeletePersonPage(HttpServletRequest request, HttpServletResponse response) {
+		Person person = service.getPerson(request.getParameter("id"));
+		request.setAttribute("person", person);
+		return "deletePerson.jsp";
+	}
+
+	private String deletePerson(HttpServletRequest request, HttpServletResponse response) {
+		if (request.getParameter("submit").equals("Delete")) {
+			service.deletePerson(request.getParameter("id"));
+		}
+		return showUsers(request, response);
 	}
 	
 	private String goToDeleteProductPage(HttpServletRequest request, HttpServletResponse response) {
