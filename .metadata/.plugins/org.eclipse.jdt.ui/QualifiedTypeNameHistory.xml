@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
+<fullyQualifiedTypeName name="domain.ShopService"/>
+<fullyQualifiedTypeName name="domain.Person"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="org.apache.commons.lang3.tuple.Pair"/>
+<fullyQualifiedTypeName name="db.ProductDbInMemory"/>
+<fullyQualifiedTypeName name="domain.Product"/>
+<fullyQualifiedTypeName name="domain.DomainException"/>
+</qualifiedTypeNameHistroy>
