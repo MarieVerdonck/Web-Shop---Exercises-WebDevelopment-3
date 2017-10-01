@@ -229,5 +229,14 @@ public class RegisterTest {
 		WebElement fieldEmail=driver.findElement(By.id("email"));
 		assertEquals("pieter.pieters@hotmail.com",fieldEmail.getAttribute("value"));
 		
+		driver.get("http://localhost:8080/Web3_Lab1/Controller?action=overviewUsers");
+		
+		WebElement deleteLink=(WebElement) driver.findElement(By.id("delete"+useridRandom));
+		String lastDeleteLink = deleteLink.getAttribute("href");
+		driver.get(lastDeleteLink);
+		
+		WebElement deletebutton=driver.findElement(By.id("delete"));
+		deletebutton.click();	
+		
 	}
 }
