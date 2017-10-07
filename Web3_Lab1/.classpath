@@ -11,5 +11,6 @@
 	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/Marie/OneDrive/UCLL/resources/selenium-server-standalone-3.5.3.jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/Marie/OneDrive/UCLL/resources/jstl-1.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Marie/OneDrive/UCLL/resources/postgresql-42.1.4.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

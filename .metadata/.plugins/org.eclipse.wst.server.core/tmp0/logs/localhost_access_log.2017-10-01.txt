@@ -1466,3 +1466,15 @@
 0:0:0:0:0:0:0:1 - - [01/Oct/2017:09:52:15 +0200] "GET /Web3_Lab1/css/style.css HTTP/1.1" 200 3136
 0:0:0:0:0:0:0:1 - - [01/Oct/2017:09:52:15 +0200] "GET /Web3_Lab1/images/banner.png HTTP/1.1" 200 722578
 0:0:0:0:0:0:0:1 - - [01/Oct/2017:09:52:15 +0200] "GET /favicon.ico HTTP/1.1" 404 1089
+0:0:0:0:0:0:0:1 - - [01/Oct/2017:09:52:17 +0200] "POST /Web3_Lab1/Controller?action=signUpPerson HTTP/1.1" 200 1187
+0:0:0:0:0:0:0:1 - - [01/Oct/2017:09:52:17 +0200] "GET /Web3_Lab1/Controller?action=signUp HTTP/1.1" 200 1794
+0:0:0:0:0:0:0:1 - - [01/Oct/2017:09:52:18 +0200] "POST /Web3_Lab1/Controller?action=signUpPerson HTTP/1.1" 200 1950
+0:0:0:0:0:0:0:1 - - [01/Oct/2017:09:52:18 +0200] "GET /Web3_Lab1/Controller?action=overviewUsers HTTP/1.1" 200 1384
+0:0:0:0:0:0:0:1 - - [01/Oct/2017:09:52:18 +0200] "GET /Web3_Lab1/Controller?action=deletePersonPage&id=13pierke HTTP/1.1" 200 1163
+0:0:0:0:0:0:0:1 - - [01/Oct/2017:09:52:18 +0200] "POST /Web3_Lab1/Controller?action=deletePerson&id=13pierke HTTP/1.1" 200 1168
+127.0.0.1 - - [01/Oct/2017:09:54:09 +0200] "GET / HTTP/1.1" 404 1078
+0:0:0:0:0:0:0:1 - - [01/Oct/2017:09:54:12 +0200] "GET /Web3_Lab1/ HTTP/1.1" 200 1187
+0:0:0:0:0:0:0:1 - - [01/Oct/2017:09:54:12 +0200] "GET /favicon.ico HTTP/1.1" 404 1089
+0:0:0:0:0:0:0:1 - - [01/Oct/2017:09:54:14 +0200] "GET /Web3_Lab1/Controller?action=overviewUsers HTTP/1.1" 200 1153
+0:0:0:0:0:0:0:1 - - [01/Oct/2017:09:54:16 +0200] "GET /Web3_Lab1/Controller?action=deletePersonPage&id=admin HTTP/1.1" 200 1144
+0:0:0:0:0:0:0:1 - - [01/Oct/2017:09:54:18 +0200] "POST /Web3_Lab1/Controller?action=deletePerson&id=admin HTTP/1.1" 200 1153
