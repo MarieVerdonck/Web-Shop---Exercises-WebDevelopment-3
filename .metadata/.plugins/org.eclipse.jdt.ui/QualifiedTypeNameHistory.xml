@@ -2,10 +2,17 @@
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
 <fullyQualifiedTypeName name="domain.ShopService"/>
-<fullyQualifiedTypeName name="domain.Person"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="org.apache.commons.lang3.tuple.Pair"/>
 <fullyQualifiedTypeName name="db.ProductDbInMemory"/>
 <fullyQualifiedTypeName name="domain.Product"/>
 <fullyQualifiedTypeName name="domain.DomainException"/>
+<fullyQualifiedTypeName name="java.util.Properties"/>
+<fullyQualifiedTypeName name="java.sql.DriverManager"/>
+<fullyQualifiedTypeName name="java.sql.Connection"/>
+<fullyQualifiedTypeName name="java.sql.Statement"/>
+<fullyQualifiedTypeName name="java.sql.ResultSet"/>
+<fullyQualifiedTypeName name="domain.Person"/>
+<fullyQualifiedTypeName name="db.DbException"/>
+<fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
 </qualifiedTypeNameHistroy>
