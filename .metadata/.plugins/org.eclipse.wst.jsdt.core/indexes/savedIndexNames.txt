@@ -1,8 +1,3 @@
 INDEX VERSION 1.3+C:\Users\Marie\OneDrive\UCLL\Web3\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-4078781974.index
-782492337.index
-3468712779.index
+3337535181.index
 403644415.index
-580301322.index
-1960620936.index
-918976321.index
