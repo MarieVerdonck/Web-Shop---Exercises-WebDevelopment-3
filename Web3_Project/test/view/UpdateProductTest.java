@@ -21,7 +21,7 @@ public class UpdateProductTest extends SeleniumTest {
 		String randomName = generateRandomNrOrderToRunTestMoreThanOnce("TestName");
 		submitProductForm(randomName, "TestDescription", "0.05");
 		
-		driver.get("http://localhost:8080/Web3_Lab1/Controller?action=overviewProducts");
+		driver.get(baseUrl + "/Controller?action=overviewProducts");
 		
 		ArrayList<WebElement> updateLinks=(ArrayList<WebElement>) driver.findElements(By.xpath("//*[contains(@id, 'update')]"));
 		String lastUpdateLink = updateLinks.get(updateLinks.size()-1).getAttribute("href");
