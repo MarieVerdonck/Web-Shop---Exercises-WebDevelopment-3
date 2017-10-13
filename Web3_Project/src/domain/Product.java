@@ -10,11 +10,11 @@ public class Product {
 		
 	}
 	
-	public Product(int productId, String name, String description, double d) {
+	public Product(int productId, String name, String description, double price) {
 		setProductId(productId);
 		setName(name);
 		setDescription(description);
-		setPrice(d);
+		setPrice(price);
 	}
 	public Product(String name, String description, double d) {
 		setName(name);
