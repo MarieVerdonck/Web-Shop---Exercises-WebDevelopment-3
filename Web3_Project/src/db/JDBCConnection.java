@@ -14,7 +14,7 @@ public final class JDBCConnection {
 	private static final String url = "jdbc:postgresql://gegevensbanken.khleuven.be:51617/2TX34"; 
 	private static final String currentSchema = "r0298778";
 	//TODO Make generic account and grant access
-	private static final String user = "TODO";
+	private static final String user = "***";
 	private static final String password = "***";
 	private static final String ssl = "true";
 	private static final String sslfactory = "org.postgresql.ssl.NonValidatingFactory";
