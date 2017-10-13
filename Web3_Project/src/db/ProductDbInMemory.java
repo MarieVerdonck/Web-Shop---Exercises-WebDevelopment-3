@@ -7,7 +7,7 @@ import java.util.Map;
 
 import domain.Product;
 
-public class ProductDbInMemory {
+public class ProductDbInMemory implements ProductDb {
 	private Map<Integer, Product> records = new HashMap<Integer, Product>();
 	
 	public ProductDbInMemory () {
@@ -19,6 +19,10 @@ public class ProductDbInMemory {
 		add(poppy);
 	}
 	
+	/* (non-Javadoc)
+	 * @see db.ProductDb#get(int)
+	 */
+	@Override
 	public Product get(int id){
 		if(id < 0){
 			throw new DbException("No valid id given");
@@ -26,10 +30,18 @@ public class ProductDbInMemory {
 		return records.get(id);
 	}
 	
+	/* (non-Javadoc)
+	 * @see db.ProductDb#getAll()
+	 */
+	@Override
 	public List<Product> getAll(){
 		return new ArrayList<Product>(records.values());	
 	}
 
+	/* (non-Javadoc)
+	 * @see db.ProductDb#add(domain.Product)
+	 */
+	@Override
 	public void add(Product product){
 		if(product == null){
 			throw new DbException("No product given");
@@ -42,6 +54,10 @@ public class ProductDbInMemory {
 		records.put(product.getProductId(), product);
 	}
 	
+	/* (non-Javadoc)
+	 * @see db.ProductDb#update(domain.Product)
+	 */
+	@Override
 	public void update(Product product){
 		if(product == null){
 			throw new DbException("No product given");
@@ -52,6 +68,10 @@ public class ProductDbInMemory {
 		records.put(product.getProductId(), product);
 	}
 	
+	/* (non-Javadoc)
+	 * @see db.ProductDb#delete(int)
+	 */
+	@Override
 	public void delete(int id){
 		if(id < 0){
 			throw new DbException("No valid id given");
