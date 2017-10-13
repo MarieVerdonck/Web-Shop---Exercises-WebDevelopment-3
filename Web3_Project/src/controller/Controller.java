@@ -147,6 +147,7 @@ public class Controller extends HttpServlet {
 			product.setName(newProduct.getName());
 			product.setDescription(newProduct.getDescription());
 			product.setPrice(newProduct.getPrice());
+			service.updateProducts(product);
 			destination = this.showProducts(request, response);
 		} else {
 			request.setAttribute("errors", errors);
