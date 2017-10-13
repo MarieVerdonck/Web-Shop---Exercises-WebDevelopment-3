@@ -1,29 +1,15 @@
 package view.desktop;
 
 import java.sql.*;
-import java.util.Properties;
 
 import javax.swing.JOptionPane;
 
 import db.DbException;
+import db.JDBCConnection;
 
 public class DBPostGresDemo_AddPerson {
 
 	public static void main(String[] args) {
-		Properties properties = new Properties();
-		String url = "jdbc:postgresql://gegevensbanken.khleuven.be:51617/2TX34"; 
-		properties.setProperty("currentSchema", "r0298778");
-		//TODO Make generic account and grant access
-		properties.setProperty("user", "TODO");
-		properties.setProperty("password", "TODO");
-		properties.setProperty("ssl", "true");
-		properties.setProperty("sslfactory", "org.postgresql.ssl.NonValidatingFactory");
-		
-		try {
-	        Class.forName("org.postgresql.Driver");
-	    } catch (ClassNotFoundException e) {
-	        throw new DbException(e.getMessage(),e);
-	    }
 		try {
 	        String userid = JOptionPane.showInputDialog("userid");
 	        String password = JOptionPane.showInputDialog("password");
@@ -31,7 +17,7 @@ public class DBPostGresDemo_AddPerson {
 	        String firstName = JOptionPane.showInputDialog("first name");
 	        String lastName = JOptionPane.showInputDialog("last name");
 	        
-			Connection connection = DriverManager.getConnection(url, properties);
+	        Connection connection = JDBCConnection.getConnectionObject().getConnection();
 			Statement statement = connection.createStatement();
 			
 			String sql = "INSERT INTO person (userid, email, password, \"firstName\", \"lastName\") "
