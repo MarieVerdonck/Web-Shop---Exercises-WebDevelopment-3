@@ -102,6 +102,12 @@ public class PersonDbJDBC implements PersonDb {
 
 	@Override
 	public void delete(String personId) {
+		if(personId == null){
+			throw new DbException("No id given");
+		}
+		if (this.get(personId)!=null) {
+			throw new DbException("No user exists with this Id.");
+		}
 		String sql = "DELETE FROM person WHERE userid='" + personId + "'";
 		Connection connection = JDBCConnection.getConnectionObject().getConnection();
 		Statement statement;
