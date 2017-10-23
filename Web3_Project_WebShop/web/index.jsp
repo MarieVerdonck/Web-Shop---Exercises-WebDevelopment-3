@@ -18,7 +18,7 @@
 					aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos
 					qui ratione voluptatem sequi nesciunt. 
 			</main>
-			<footer> &copy; Webontwikkeling 3, UC Leuven-Limburg </footer>
+			<%@include file="footer.jspf" %>
 		</div>
 	</body>
 </html>
