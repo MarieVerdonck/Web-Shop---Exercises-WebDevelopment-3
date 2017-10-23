@@ -50,5 +50,21 @@ public final class JDBCConnection {
 		properties.setProperty("ssl", ssl);
 		properties.setProperty("sslfactory", sslfactory);
 	}
+    
+    //!!SQL Commands!!
+    /*
+     * Auto increment id:
+     * CREATE SEQUENCE user_id_seq;
+     * ALTER TABLE user ALTER user_id SET DEFAULT NEXTVAL('user_id_seq');
+     * 
+     * Add column:
+     * ALTER TABLE table_name
+     * ADD COLUMN new_column_name data_type constraint;
+     * Ex: alter table r0298778_test.person add column address character varying(500) not null;
+     * Problem: not null constraint > previous entries null for that column > add first without constraint > update values > set not null > alter table person alter column address set not null;
+     * 																		> 2nd solution; with default: alter table person add column address not null default 'foo' > update data > remove default > alter table person alter column address drop default;
+     * Drop column: alter table "name" drop "column_name"
+     * Drop table: drop "table_name" cascade|restrict (drop objects dependent|refuse to drop if dependents)
+     * **/
 
 }
