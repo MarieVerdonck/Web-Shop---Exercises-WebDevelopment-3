@@ -1,0 +1,38 @@
+VRAGEN WEB3
+===========
+
+Kon fn tag niet gebruiken -> Nu vervangen met func
+(zie addProductForm)
+Error met fn:
+nov 08, 2017 4:04:45 PM org.apache.catalina.core.StandardWrapperValve invoke
+SEVERE: Servlet.service() for servlet [controller.Controller] in context with path [/r0298778_VerdonckMaria] threw exception [/addProductForm.jsp (line: [21], column: [72]) Attempt to redefine the prefix [fn] to [http://java.sun.com/jsp/jstl/core], when it was already defined as [http://java.sun.com/jsp/jstl/functions] in the current scope.] with root cause
+org.apache.jasper.JasperException: /addProductForm.jsp (line: [21], column: [72]) Attempt to redefine the prefix [fn] to [http://java.sun.com/jsp/jstl/core], when it was already defined as [http://java.sun.com/jsp/jstl/functions] in the current scope.
+	at org.apache.jasper.compiler.DefaultErrorHandler.jspError(DefaultErrorHandler.java:42)
+	at org.apache.jasper.compiler.ErrorDispatcher.dispatch(ErrorDispatcher.java:291)
+	at org.apache.jasper.compiler.ErrorDispatcher.jspError(ErrorDispatcher.java:97)
+	at org.apache.jasper.compiler.Parser.parseTaglibDirective(Parser.java:423)
+	at org.apache.jasper.compiler.Parser.parseDirective(Parser.java:492)
+	at org.apache.jasper.compiler.Parser.parseElements(Parser.java:1448)
+	at org.apache.jasper.compiler.Parser.parse(Parser.java:145)
+	at org.apache.jasper.compiler.ParserController.doParse(ParserController.java:244)
+	...
+
+Probleem (occasioneel, esp testing): 
+	Caused by: org.postgresql.util.PSQLException: 
+	FATAL: too many connections for role "r0298778"
+	> Naar error pagina? Waar onderscheppen? 
+		Is deel van error messages van form
+	
+Postgres DB zijn eigen errors 
+	opvangen nadat ze gebeuren of nooit naar db laten gaan?
+	
+Solved
+------
+Hoe: anoniem/generisch account voor db aanmaken?
+	> gaat niet! :(
+	
+Waarom: mijn kolomnamen in "" in queries? 
+	vb UPDATE person SET "firstName"='test2First' WHERE userid = 'test_db';
+	> Bij alle namen die hoofdletters bevatten "" > conventie is geen hoofdletters gebruiken
+	
+Strategy pattern voor db keuze? > niet nodig

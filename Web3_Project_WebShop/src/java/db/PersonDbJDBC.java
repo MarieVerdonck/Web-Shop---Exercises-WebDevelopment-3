@@ -1,6 +1,7 @@
 package db;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -18,9 +19,10 @@ public class PersonDbJDBC implements PersonDb {
         }
         try {
             Connection connection = JDBCConnection.getConnectionObject().getConnection();;
-            String sql = "SELECT * FROM person WHERE userid='" + personId + "'";
-            Statement statement = connection.createStatement();
-            ResultSet result = statement.executeQuery(sql);
+            String sql = "SELECT * FROM person WHERE userid=?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, personId);
+            ResultSet result = statement.executeQuery();
             System.out.println(result);
             if (!result.next()) {
                 return null;
@@ -67,11 +69,16 @@ public class PersonDbJDBC implements PersonDb {
         String firstName = person.getFirstName();
         String lastName = person.getLastName();
         String sql = "INSERT INTO person (userid, email, password, \"firstName\", \"lastName\") "
-                + "VALUES ('" + userid + "','" + email + "','" + password + "','" + firstName + "','" + lastName + "');";
+                + "VALUES (?, ?, ?, ?, ?, ?)";
         try {
             Connection connection = JDBCConnection.getConnectionObject().getConnection();
-            Statement statement = connection.createStatement();
-            statement.executeUpdate(sql);
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, userid);
+            statement.setString(2, email);
+            statement.setString(3, password);
+            statement.setString(4, firstName);
+            statement.setString(5, lastName);
+            statement.execute();
             statement.close();
             connection.close();
         } catch (SQLException e) {
@@ -86,11 +93,16 @@ public class PersonDbJDBC implements PersonDb {
         String email = person.getEmail();
         String firstName = person.getFirstName();
         String lastName = person.getLastName();
-        String sql = "UPDATE person SET password = '" + password + "', \"email\"='" + email + "', \"firstName\"='" + firstName + ", \"lastName\"='" + lastName + "' WHERE \"userid\" = '" + userid + "';";
+        String sql = "UPDATE person SET password = ?, \"email\"=?, \"firstName\"=?, \"lastName\"=? WHERE \"userid\" = ?;";
         try {
             Connection connection = JDBCConnection.getConnectionObject().getConnection();
-            Statement statement = connection.createStatement();
-            statement.executeUpdate(sql);
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, password);
+            statement.setString(2, email);
+            statement.setString(3, firstName);
+            statement.setString(4, lastName);
+            statement.setString(5, userid);
+            statement.execute();
             statement.close();
             connection.close();
         } catch (SQLException e) {
@@ -106,10 +118,11 @@ public class PersonDbJDBC implements PersonDb {
         if (this.get(personId) == null) {
             throw new DbException("No user exists with this Id.");
         }
-        String sql = "DELETE FROM person WHERE userid='" + personId + "'";
+        String sql = "DELETE FROM person WHERE userid=?";
         try {
             Connection connection = JDBCConnection.getConnectionObject().getConnection();
-            Statement statement = connection.createStatement();
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, personId);
             statement.executeUpdate(sql);
             statement.close();
             connection.close();

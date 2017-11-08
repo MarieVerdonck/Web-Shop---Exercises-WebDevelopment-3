@@ -17,9 +17,9 @@ public class DeletePersonTest extends SeleniumTest {
 	}	
 
 	@Test
-	public void testDeleteProduct() {
+	public void testDeletePerson() {
 		String useridRandom = generateRandomNrOrderToRunTestMoreThanOnce("jakke");
-		submitPersonForm(useridRandom, "Test", "Test", "Test@hotmail.com" , "1234");
+		submitPersonForm(useridRandom, "Test", "Test", useridRandom + "@hotmail.com" , "1234");
 		
 		driver.get(baseUrl + "/Controller?action=overviewUsers");
 		
@@ -36,7 +36,7 @@ public class DeletePersonTest extends SeleniumTest {
 		ArrayList<WebElement> listItems=(ArrayList<WebElement>) driver.findElements(By.cssSelector("table tr"));
 		boolean found=false;
 		for (WebElement listItem:listItems) {
-				if (listItem.getText().contains("Test@hotmail.com")) {
+				if (listItem.getText().contains(useridRandom + "@hotmail.com")) {
 				found=true;
 			}
 		}
@@ -44,9 +44,9 @@ public class DeletePersonTest extends SeleniumTest {
 	}
 	
 	@Test
-	public void testDeleteProduct_Cancelled() {
+	public void testDeletePerson_Cancelled() {
 		String useridRandom = generateRandomNrOrderToRunTestMoreThanOnce("jakke");
-		submitPersonForm(useridRandom, "Test", "Test", "Test@hotmail.com" , "1234");
+		submitPersonForm(useridRandom, "Test", "Test", useridRandom + "@hotmail.com" , "1234");
 		
 		driver.get(baseUrl + "/Controller?action=overviewUsers");
 		
@@ -63,7 +63,7 @@ public class DeletePersonTest extends SeleniumTest {
 		ArrayList<WebElement> listItems=(ArrayList<WebElement>) driver.findElements(By.cssSelector("table tr"));
 		boolean found=false;
 		for (WebElement listItem:listItems) {
-				if (listItem.getText().contains("Test@hotmail.com")) {
+				if (listItem.getText().contains(useridRandom + "@hotmail.com")) {
 				found=true;
 			}
 		}
