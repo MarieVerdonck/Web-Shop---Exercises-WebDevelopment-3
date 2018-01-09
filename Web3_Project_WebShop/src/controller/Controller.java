@@ -2,8 +2,10 @@ package controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Properties;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,100 +25,119 @@ import domain.ShopService;
 @WebServlet("/Controller")
 public class Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-	private ShopService service = new ShopService(); 
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public Controller() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+	private ShopService service;
+
+	@Override
+	public void init() throws ServletException {
+		super.init();
+		ServletContext context = getServletContext();
+		
+		Properties properties = new Properties();
+		properties.setProperty("user", context.getInitParameter("user"));     
+		properties.setProperty("password", context.getInitParameter("password")); 
+		properties.setProperty("ssl", context.getInitParameter("ssl"));     
+		properties.setProperty("sslfactory", context.getInitParameter("sslfactory"));     
+		properties.setProperty("url", context.getInitParameter("url"));
+		
+		service = new ShopService(properties);
+	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public Controller() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		this.handleRequest(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		this.handleRequest(request, response);
 	}
-	
+
 	void handleRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getParameter("action");
 		String destination = "index.jsp";
-		if (action!=null) {
-			switch(action) {
-				case "overviewUsers":
-					destination = showUsers(request, response);
-					break;
-				case "overviewProducts":
-					destination = showProducts(request, response);
-					break;
-				case "addProduct":
-					destination = showAddProductPage(request, response);
-					break;
-				case "addProductToDB":
-					destination = tryToAddProduct(request, response);
-					break;
-				case "updateProductPage" :
-					destination = goToUpdateProductPage(request, response);
-					break;
-				case "updateProduct" :
-					destination = updateProduct(request, response);
-					break;
-				case "deleteProductPage" :
-					destination = goToDeleteProductPage(request, response);
-					break;
-				case "deleteProduct" :
-					destination = deleteProduct(request, response);
-					break;
-				case "deletePersonPage" :
-					destination = goToDeletePersonPage(request, response);
-					break;
-				case "deletePerson" :
-					destination = deletePerson(request, response);
-					break;
-				case "checkPasswordPage" : 
-					destination = goToCheckPasswordPage(request, response);
-					break;
-				case "checkPassword" :
-					destination = checkPassword(request, response);
-					break;
-				case "signUp":
-					destination = showSignUpPage(request, response);
-					break;
-				case "signUpPerson" :
-					destination = tryToSignUp(request, response);
-					break;
-				default :
-					destination = "index.jsp";
+		if (action != null) {
+			switch (action) {
+			case "overviewUsers":
+				destination = showUsers(request, response);
+				break;
+			case "overviewProducts":
+				destination = showProducts(request, response);
+				break;
+			case "addProduct":
+				destination = showAddProductPage(request, response);
+				break;
+			case "addProductToDB":
+				destination = tryToAddProduct(request, response);
+				break;
+			case "updateProductPage":
+				destination = goToUpdateProductPage(request, response);
+				break;
+			case "updateProduct":
+				destination = updateProduct(request, response);
+				break;
+			case "deleteProductPage":
+				destination = goToDeleteProductPage(request, response);
+				break;
+			case "deleteProduct":
+				destination = deleteProduct(request, response);
+				break;
+			case "deletePersonPage":
+				destination = goToDeletePersonPage(request, response);
+				break;
+			case "deletePerson":
+				destination = deletePerson(request, response);
+				break;
+			case "checkPasswordPage":
+				destination = goToCheckPasswordPage(request, response);
+				break;
+			case "checkPassword":
+				destination = checkPassword(request, response);
+				break;
+			case "signUp":
+				destination = showSignUpPage(request, response);
+				break;
+			case "signUpPerson":
+				destination = tryToSignUp(request, response);
+				break;
+			default:
+				destination = "index.jsp";
 			}
 		}
 		RequestDispatcher view = request.getRequestDispatcher(destination);
 		view.forward(request, response);
 	}
-	
+
 	private String showUsers(HttpServletRequest request, HttpServletResponse response) {
 		request.setAttribute("persons", service.getPersons());
 		return "personoverview.jsp";
 	}
-	
+
 	private String showProducts(HttpServletRequest request, HttpServletResponse response) {
 		request.setAttribute("products", service.getProducts());
 		return "productoverview.jsp";
 	}
-	
+
 	private String showAddProductPage(HttpServletRequest request, HttpServletResponse response) {
 		return "addProduct.jsp";
 	}
-	
+
 	private String tryToAddProduct(HttpServletRequest request, HttpServletResponse response) {
 		ArrayList<String> errors = this.getProductErrorList(request, response).getErrors();
 		Product newProduct = this.getProductErrorList(request, response).getProduct();
@@ -134,16 +155,16 @@ public class Controller extends HttpServlet {
 			request.setAttribute("product", newProduct);
 			destination = showAddProductPage(request, response);
 		}
-				
+
 		return destination;
 	}
-	
+
 	private String goToUpdateProductPage(HttpServletRequest request, HttpServletResponse response) {
 		Product product = service.getProduct(request.getParameter("id"));
 		request.setAttribute("product", product);
 		return "updateProduct.jsp";
 	}
-	
+
 	private String updateProduct(HttpServletRequest request, HttpServletResponse response) {
 		ArrayList<String> errors = this.getProductErrorList(request, response).getErrors();
 		Product newProduct = this.getProductErrorList(request, response).getProduct();
@@ -160,10 +181,10 @@ public class Controller extends HttpServlet {
 			request.setAttribute("product", newProduct);
 			destination = showAddProductPage(request, response);
 		}
-				
+
 		return destination;
 	}
-	
+
 	private String goToDeletePersonPage(HttpServletRequest request, HttpServletResponse response) {
 		Person person = service.getPerson(request.getParameter("id"));
 		request.setAttribute("person", person);
@@ -176,20 +197,20 @@ public class Controller extends HttpServlet {
 		}
 		return showUsers(request, response);
 	}
-	
+
 	private String goToCheckPasswordPage(HttpServletRequest request, HttpServletResponse response) {
 		Person person = service.getPerson(request.getParameter("id"));
 		request.setAttribute("person", person);
 		return "checkPassword.jsp";
 	}
-	
+
 	private String checkPassword(HttpServletRequest request, HttpServletResponse response) {
 		String responseMessage = "";
-		//Generate errors
+		// Generate errors
 		String password = request.getParameter("password");
-		
+
 		Person person = service.getPerson(request.getParameter("id"));
-		
+
 		System.out.println("testperson ignore next salt");
 		Person newPerson = new Person();
 
@@ -198,7 +219,7 @@ public class Controller extends HttpServlet {
 		} catch (IllegalArgumentException e) {
 			responseMessage = e.getMessage();
 		}
-		
+
 		if (responseMessage.equals("")) {
 			System.out.println("PW in DB: " + person.getPassword());
 			if (person.isCorrectPassword(password)) {
@@ -209,10 +230,10 @@ public class Controller extends HttpServlet {
 		}
 		request.setAttribute("person", person);
 		request.setAttribute("response", responseMessage);
-				
+
 		return "checkPassword.jsp";
 	}
-	
+
 	private String goToDeleteProductPage(HttpServletRequest request, HttpServletResponse response) {
 		Product product = service.getProduct(request.getParameter("id"));
 		request.setAttribute("product", product);
@@ -229,7 +250,7 @@ public class Controller extends HttpServlet {
 	private String showSignUpPage(HttpServletRequest request, HttpServletResponse response) {
 		return "signUp.jsp";
 	}
-	
+
 	private String tryToSignUp(HttpServletRequest request, HttpServletResponse response) {
 		ArrayList<String> errors = this.getPersonErrorList(request, response).getErrors();
 		Person newPerson = this.getPersonErrorList(request, response).getPerson();
@@ -248,17 +269,17 @@ public class Controller extends HttpServlet {
 			request.setAttribute("newPerson", newPerson);
 			destination = showSignUpPage(request, response);
 		}
-		
+
 		return destination;
 	}
-	
+
 	private ProductErrorListPair getProductErrorList(HttpServletRequest request, HttpServletResponse response) {
 		ArrayList<String> errors = new ArrayList<String>();
-		
+
 		String name = request.getParameter("name");
 		String description = request.getParameter("description");
 		String price = request.getParameter("price");
-		
+
 		Product newProduct = new Product();
 		try {
 			newProduct.setName(name);
@@ -287,16 +308,16 @@ public class Controller extends HttpServlet {
 		}
 		return new ProductErrorListPair(newProduct, errors);
 	}
-	
+
 	private PersonErrorListPair getPersonErrorList(HttpServletRequest request, HttpServletResponse response) {
 		ArrayList<String> errors = new ArrayList<String>();
-		
+
 		String userid = request.getParameter("userid");
 		String firstName = request.getParameter("firstName");
 		String lastName = request.getParameter("lastName");
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
-		
+
 		Person newPerson = new Person();
 		try {
 			newPerson.setUserid(userid);
@@ -325,5 +346,5 @@ public class Controller extends HttpServlet {
 		}
 		return new PersonErrorListPair(newPerson, errors);
 	}
-	
+
 }

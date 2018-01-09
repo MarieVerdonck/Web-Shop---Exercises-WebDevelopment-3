@@ -8,6 +8,7 @@ import domain.Person;
 
 public class DBPostGresDemo_PersonOverview {
 
+	/**
 	public static void main(String[] args) {
 		try {
 			Connection connection = JDBCConnection.getConnectionObject().getConnection();
@@ -30,6 +31,6 @@ public class DBPostGresDemo_PersonOverview {
 		} catch (SQLException e) {
 			throw new DbException(e.getMessage(), e);
 		}
-	}
+	} */
 	
 }

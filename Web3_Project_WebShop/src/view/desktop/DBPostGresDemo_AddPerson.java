@@ -8,6 +8,7 @@ import db.DbException;
 import db.JDBCConnection;
 
 public class DBPostGresDemo_AddPerson {
+	/**
 
 	public static void main(String[] args) {
 		try {
@@ -30,7 +31,7 @@ public class DBPostGresDemo_AddPerson {
 		} catch (SQLException e) {
 			throw new DbException(e.getMessage(), e);
 		}
-	}
+	} */
 	
 }
 

@@ -11,6 +11,12 @@ import java.util.List;
 import domain.Person;
 
 public class PersonDbJDBC implements PersonDb {
+	
+	private JDBCConnection Dbconnection;
+	
+	public PersonDbJDBC(JDBCConnection connection) {
+		this.Dbconnection = connection;
+	}
 
     @Override
     public Person get(String personId) {
@@ -18,7 +24,7 @@ public class PersonDbJDBC implements PersonDb {
             throw new DbException("No id given");
         }
         try {
-            Connection connection = JDBCConnection.getConnectionObject().getConnection();;
+            Connection connection = Dbconnection.getConnection();;
             String sql = "SELECT * FROM person WHERE userid=?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, personId);
@@ -41,7 +47,7 @@ public class PersonDbJDBC implements PersonDb {
         List<Person> persons = new ArrayList<Person>();
         String sql = "SELECT * FROM person";
         try {
-            Connection connection = JDBCConnection.getConnectionObject().getConnection();
+            Connection connection = Dbconnection.getConnection();
             Statement statement = connection.createStatement();
             ResultSet result = statement.executeQuery(sql);
             while (result.next()) {
@@ -72,7 +78,7 @@ public class PersonDbJDBC implements PersonDb {
         String sql = "INSERT INTO person (userid, email, password, \"firstName\", \"lastName\", salt) "
                 + "VALUES (?, ?, ?, ?, ?, ?)";
         try {
-            Connection connection = JDBCConnection.getConnectionObject().getConnection();
+            Connection connection = Dbconnection.getConnection();
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, userid);
             statement.setString(2, email);
@@ -97,7 +103,7 @@ public class PersonDbJDBC implements PersonDb {
         String lastName = person.getLastName();
         String sql = "UPDATE person SET password = ?, \"email\"=?, \"firstName\"=?, \"lastName\"=? WHERE \"userid\" = ?;";
         try {
-            Connection connection = JDBCConnection.getConnectionObject().getConnection();
+            Connection connection = Dbconnection.getConnection();
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, password);
             statement.setString(2, email);
@@ -122,7 +128,7 @@ public class PersonDbJDBC implements PersonDb {
         }
         String sql = "DELETE FROM person WHERE userid=?";
         try {
-            Connection connection = JDBCConnection.getConnectionObject().getConnection();
+            Connection connection = Dbconnection.getConnection();
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, personId);
             statement.execute();
