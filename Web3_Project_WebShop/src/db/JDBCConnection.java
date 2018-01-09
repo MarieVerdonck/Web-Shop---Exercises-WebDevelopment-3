@@ -16,7 +16,7 @@ public final class JDBCConnection {
 	//TODO Make generic account and grant access
 	//Apparently not possible :/
 	private static final String user = "r0298778";
-	private static final String password = "Cuyper56-3";
+	private static final String password = "***";
 	private static final String ssl = "true";
 	private static final String sslfactory = "org.postgresql.ssl.NonValidatingFactory";
 
