@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.Properties;
 
 import javax.servlet.RequestDispatcher;
@@ -32,14 +33,14 @@ public class Controller extends HttpServlet {
 	public void init() throws ServletException {
 		super.init();
 		ServletContext context = getServletContext();
-		
+
 		Properties properties = new Properties();
-		properties.setProperty("user", context.getInitParameter("user"));     
-		properties.setProperty("password", context.getInitParameter("password")); 
-		properties.setProperty("ssl", context.getInitParameter("ssl"));     
-		properties.setProperty("sslfactory", context.getInitParameter("sslfactory"));     
-		properties.setProperty("url", context.getInitParameter("url"));
-		
+		//More flexible for if properties contextparam increase
+		Enumeration<String> parameterNames = context.getInitParameterNames();
+		while (parameterNames.hasMoreElements()) {
+			String propertyName = parameterNames.nextElement();
+			properties.setProperty(propertyName, context.getInitParameter(propertyName));
+		}
 		service = new ShopService(properties);
 	}
 

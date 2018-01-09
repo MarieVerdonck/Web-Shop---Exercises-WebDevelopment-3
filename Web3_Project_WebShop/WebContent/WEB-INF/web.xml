@@ -17,7 +17,7 @@
 	</context-param>
 	<context-param>
 		<param-name>password</param-name>
-		<param-value>****</param-value>
+		<param-value>***</param-value>
 	</context-param>
 	<context-param>
 		<param-name>currentSchema</param-name>
