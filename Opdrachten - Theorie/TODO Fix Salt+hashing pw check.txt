@@ -1,0 +1,13 @@
+FOUT in Hashing
+
+
+		//update password
+		byte[] saltBytes;
+		try {
+			saltBytes = this.getSalt().getBytes("UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			throw new DomainException(e.getMessage(), e);
+		}
+		crypt.update(saltBytes);
+		//digest
+		byte[] digest = crypt.digest();
