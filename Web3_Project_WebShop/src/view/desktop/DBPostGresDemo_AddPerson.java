@@ -1,12 +1,5 @@
 package view.desktop;
 
-import java.sql.*;
-
-import javax.swing.JOptionPane;
-
-import db.DbException;
-import db.JDBCConnection;
-
 public class DBPostGresDemo_AddPerson {
 	/**
 

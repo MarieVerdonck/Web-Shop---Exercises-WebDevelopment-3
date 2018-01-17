@@ -9,6 +9,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -116,6 +117,9 @@ public class Controller extends HttpServlet {
 				break;
 			case "signUpPerson":
 				destination = tryToSignUp(request, response);
+				break;
+			case "changeColour":
+				destination = changeColour(request, response);
 				break;
 			default:
 				destination = "index.jsp";
@@ -271,6 +275,29 @@ public class Controller extends HttpServlet {
 			destination = showSignUpPage(request, response);
 		}
 
+		return destination;
+	}
+	
+	private String changeColour(HttpServletRequest request, HttpServletResponse response) {
+		System.out.println("Lets change the colour");
+		String destination = "index.jsp";
+		String colour = "yellow";
+		Cookie[] cookies = request.getCookies();
+		if (cookies.length!=0) {
+			for (Cookie cookie: cookies) {
+				if (cookie.getName().equals("colour")) {
+					colour = cookie.getValue();
+				}
+			}
+		}
+		if (colour.equals("yellow")) {
+			colour = "red";
+		} else {
+			colour = "yellow";
+		}
+		System.out.println("Colour cookie now: " + colour);
+		Cookie cookie = new Cookie("colour", colour);
+		response.addCookie(cookie);
 		return destination;
 	}
 
