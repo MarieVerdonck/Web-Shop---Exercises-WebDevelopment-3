@@ -16,7 +16,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class SeleniumTest {
 
 	protected static WebDriver driver;
-	protected static final String baseUrl = "http://localhost:8080/r0298778_VerdonckMaria/";
+	protected static final String baseUrl = "http://localhost:8080/Web3_Project_WebShop";
 	@Rule
 	public final ExpectedException exception = ExpectedException.none();
 

@@ -1,38 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://java.sun.com/xml/ns/javaee"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
-	version="3.0">
-	<display-name>r0298778_VerdonckMaria_WorkVersion</display-name>
-	<welcome-file-list>
-		<welcome-file>Controller</welcome-file>
-	</welcome-file-list>
-	<context-param>
-		<param-name>url</param-name>
-		<param-value> jdbc:postgresql://gegevensbanken.khleuven.be:51617/2TX34 </param-value>
-	</context-param>
-	<context-param>
-		<param-name>user</param-name>
-		<param-value>r0298778</param-value>
-	</context-param>
-	<context-param>
-		<param-name>password</param-name>
-		<param-value>****</param-value>
-	</context-param>
-	<context-param>
-		<param-name>currentSchema</param-name>
-		<param-value>r0298778</param-value>
-	</context-param>
-	<context-param>
-		<param-name>ssl</param-name>
-		<param-value>true</param-value>
-	</context-param>
-	<context-param>
-		<param-name>sslfactory</param-name>
-		<param-value>org.postgresql.ssl.NonValidatingFactory</param-value>
-	</context-param>
-	<error-page>
-		<exception-type>java.lang.Throwable</exception-type>
-		<location>/error.jsp</location>
-	</error-page>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
+  <display-name>r0298778_VerdonckMaria_WorkVersion</display-name>
+  <welcome-file-list>
+    <welcome-file>Controller</welcome-file>
+  </welcome-file-list>
+  <context-param>
+    <param-name>url</param-name>
+    <param-value> jdbc:postgresql://gegevensbanken.khleuven.be:51617/2TX34 </param-value>
+  </context-param>
+  <context-param>
+    <param-name>user</param-name>
+    <param-value>r0298778</param-value>
+  </context-param>
+  <context-param>
+    <param-name>password</param-name>
+    <param-value>***</param-value>
+  </context-param>
+  <context-param>
+    <param-name>currentSchema</param-name>
+    <param-value>r0298778</param-value>
+  </context-param>
+  <context-param>
+    <param-name>ssl</param-name>
+    <param-value>true</param-value>
+  </context-param>
+  <context-param>
+    <param-name>sslfactory</param-name>
+    <param-value>org.postgresql.ssl.NonValidatingFactory</param-value>
+  </context-param>
+  <error-page>
+    <exception-type>java.lang.Throwable</exception-type>
+    <location>/error.jsp</location>
+  </error-page>
 </web-app>

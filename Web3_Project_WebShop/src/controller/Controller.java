@@ -119,8 +119,8 @@ public class Controller extends HttpServlet {
 				destination = tryToSignUp(request, response);
 				break;
 			case "changeColour":
-				destination = changeColour(request, response);
-				break;
+				changeColour(request, response);
+				return;
 			default:
 				destination = "index.jsp";
 			}
@@ -278,7 +278,8 @@ public class Controller extends HttpServlet {
 		return destination;
 	}
 	
-	private String changeColour(HttpServletRequest request, HttpServletResponse response) {
+	private void changeColour(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		//TODO Return to referer page, not index.jsp
 		System.out.println("Lets change the colour");
 		String destination = "index.jsp";
 		String colour = "yellow";
@@ -296,9 +297,14 @@ public class Controller extends HttpServlet {
 			colour = "yellow";
 		}
 		System.out.println("Colour cookie now: " + colour);
+		System.out.println("Request uri: " + request.getRequestURI());
 		Cookie cookie = new Cookie("colour", colour);
 		response.addCookie(cookie);
-		return destination;
+		//referer
+		String referer = request.getHeader("Referer");
+		System.out.println("refer: "+ referer);
+		response.sendRedirect(referer);
+		//return destination;
 	}
 
 	private ProductErrorListPair getProductErrorList(HttpServletRequest request, HttpServletResponse response) {
