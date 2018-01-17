@@ -1,0 +1,37 @@
+body {
+	color: #303d11;
+	background-color: #303d11;
+}
+
+footer {
+	background-color: #b99703;
+}
+
+nav ul {
+	background-color: #b99703;
+}
+
+nav ul li a {
+	color: #303d11;
+}
+
+nav ul li#actual {
+	background-color: #f3dc04;
+}
+
+h1 {
+	background-image: url("../images/bannerYellowSmall.png");
+}
+
+@media screen and (min-width: 650px) {
+	h1 {
+		background-image: url("../images/bannerYellow.png");
+	}
+}
+
+/*
+d3bb03 green
+977007 brown
+303d11 black
+f3dc04 yellow
+*/
